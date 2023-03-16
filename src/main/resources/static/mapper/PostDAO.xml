@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ksh.board.post.PostDAO">
+	<select id="getAllPosts" parameterType="String" resultType="PostDTO">
+		select pid, p.id, username, title, content, p.regdate, p.moddate, read_cnt from post p, user u where p.id = u.id
+	</select>
+	 
+	<insert id="addPost" parameterType="PostDTO">
+		insert into post(id, title, content, regdate, read_cnt)
+		values (#{id}, #{title}, #{content}, #{regdate}, #{read_cnt})
+	</insert>
+	
+	<select id="getPost" parameterType="int" resultType="PostDTO">
+		select pid, p.id, username, title, content, p.regdate, p.moddate, read_cnt from post p, user u where pid = #{pid} and p.id = u.id
+	</select>
+	
+	<update id="updateCnt" parameterType="int">
+		update post
+		set read_cnt = read_cnt + 1
+		where pid = #{pid}
+	</update>
+	
+	<update id="updatePost" parameterType="PostDTO">
+		update post
+		set title=#{title}, content=#{content}, moddate=#{moddate}
+		where pid = #{pid}
+	</update>
+
+	<delete id="deletePost" parameterType="int">
+		delete from post
+		where pid = #{pid}		
+	</delete>
+
+</mapper>
