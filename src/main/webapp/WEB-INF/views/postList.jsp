@@ -18,8 +18,8 @@
 	</tr>
 	<c:forEach var="post" items="${posts}">
 		<tr>
-			<td align="center">${post.pid}</td>
-			<td><a href="read?pid=${post.pid}">${post.title}</a></td>
+			<td align="center">${post.id}</td>
+			<td><a href="read?id=${post.id}">${post.title}</a></td>
 			<td>${post.username}</td>
 			<td>${post.regdate}</td>
 			<td>${post.moddate}</td>

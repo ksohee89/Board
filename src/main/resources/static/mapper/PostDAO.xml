@@ -4,33 +4,35 @@
 
 <mapper namespace="ksh.board.post.PostDAO">
 	<select id="getAllPosts" parameterType="String" resultType="PostDTO">
-		select pid, p.id, username, title, content, p.regdate, p.moddate, read_cnt from post p, user u where p.id = u.id
+		select p.id, writer, username, title, content, p.regdate, p.moddate, read_cnt 
+		from post p, user u 
+		where writer = u.id
 	</select>
 	 
 	<insert id="addPost" parameterType="PostDTO">
-		insert into post(id, title, content, regdate, read_cnt)
-		values (#{id}, #{title}, #{content}, #{regdate}, #{read_cnt})
+		insert into post(writer, title, content, regdate, read_cnt)
+		values (#{writer}, #{title}, #{content}, #{regdate}, #{read_cnt})
 	</insert>
 	
 	<select id="getPost" parameterType="int" resultType="PostDTO">
-		select pid, p.id, username, title, content, p.regdate, p.moddate, read_cnt from post p, user u where pid = #{pid} and p.id = u.id
+		select p.id, writer, username, title, content, p.regdate, p.moddate, read_cnt from post p, user u where p.id = #{id} and writer = u.id
 	</select>
 	
 	<update id="updateCnt" parameterType="int">
 		update post
 		set read_cnt = read_cnt + 1
-		where pid = #{pid}
+		where id = #{id}
 	</update>
 	
 	<update id="updatePost" parameterType="PostDTO">
 		update post
 		set title=#{title}, content=#{content}, moddate=#{moddate}
-		where pid = #{pid}
+		where id = #{id}
 	</update>
 
 	<delete id="deletePost" parameterType="int">
 		delete from post
-		where pid = #{pid}		
+		where id = #{id}		
 	</delete>
 
 </mapper>

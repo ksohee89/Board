@@ -8,10 +8,10 @@
 <title>게시글 읽기</title>
 </head>
 <body>
-	<input type="hidden" name="pid" value="${post.pid}">
+	<input type="hidden" name="id" value="${post.id}">
 	<table border="1" style="table-layout: fixed">
 		<tr>
-			<th width="60">번호</th> <td>${post.pid}</td>
+			<th width="60">번호</th> <td>${post.id}</td>
 		</tr>
 		<tr>
 			<th>작성자</th> <td>${post.username}</td>
@@ -24,12 +24,35 @@
 		</tr>
 		<tr>
 			<td colspan="2"><a href="../">[목록]</a>
-			<c:if test="${sessionScope.login.id == post.id}">
-					<a href="update?pid=${post.pid}">[게시글 수정]</a> 
-					<a href="delete?pid=${post.pid}">[게시글 삭제]</a>
+			<c:if test="${sessionScope.login.id == post.writer}">
+					<a href="update?id=${post.id}">[게시글 수정]</a> 
+					<a href="delete?id=${post.id}">[게시글 삭제]</a>
 			</c:if>
 				</td>
 		</tr>
 	</table>
+	
+	<div>
+		<form method="post" action="../comment/write">
+			<input type="hidden" name="pid" value="${post.id}">
+			<input type="hidden" name="uid" value="${sessionScope.login.id}">
+			<label>댓글</label>
+			<textarea rows="1" name="content"></textarea> <button>등록</button>
+		</form>
+	</div>
+	<br>
+	<div>
+ 		<c:forEach var="comment" items="${comments}">
+			<li style="list-style:none">
+				<div>
+					<p> ${comment.username} / ${comment.regdate}</p>
+					<p> ${comment.content} </p>
+				</div>
+				<c:if test="${comment.uid == sessionScope.login.id}">
+					<button>수정</button> <button>삭제</button>
+				</c:if>
+			</li>
+		</c:forEach>
+	</div>
 </body>
 </html>

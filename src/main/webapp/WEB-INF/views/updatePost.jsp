@@ -8,9 +8,9 @@
 </head>
 <body>
 	<form action="update" method="post">
- 		<input type="hidden" name="pid" value="${post.pid}">
-		<input type="hidden" name="id" value="${sessionScope.login.id}">
-		번호: <br> ${post.pid}
+ 		<input type="hidden" name="id" value="${post.id}">
+		<input type="hidden" name="writer" value="${sessionScope.login.id}">
+		번호: <br> ${post.id}
 		<p>
 		제목: <br> <input type="text" name="title" value="${post.title}">
 		<p>

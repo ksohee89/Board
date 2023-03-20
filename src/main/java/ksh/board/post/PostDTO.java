@@ -8,8 +8,8 @@ import lombok.ToString;
 @Setter
 @ToString
 public class PostDTO {
-	int pid;
 	int id;
+	int writer;
 	String username;
 	String title;
 	String content;

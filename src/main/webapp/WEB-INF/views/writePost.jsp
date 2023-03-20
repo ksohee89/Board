@@ -8,7 +8,7 @@
 </head>
 <body>
 <form action="write" method="post">
-	<input type="hidden" name="id" value="${sessionScope.login.id}">
+	<input type="hidden" name="writer" value="${sessionScope.login.id}">
 	<input type="hidden" name="read_cnt" value=0>
 		제목: <br>
 		<input type="text" name="title"> <p>

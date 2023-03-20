@@ -4,6 +4,7 @@
 	<typeAliases>
 		<typeAlias type="ksh.board.user.UserDTO" alias="UserDTO" />
 		<typeAlias type="ksh.board.post.PostDTO" alias="PostDTO" />
+		<typeAlias type="ksh.board.comment.CommentDTO" alias="CommentDTO" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

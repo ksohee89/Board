@@ -8,8 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 public interface PostDAO {
 	public List<PostDTO> getAllPosts();
 	public int addPost(PostDTO post);
-	public PostDTO getPost (int pid);
-	public int updateCnt (int pid);
+	public PostDTO getPost (int id);
+	public int updateCnt (int id);
 	public int updatePost(PostDTO post);
-	public int deletePost(int pid);
+	public int deletePost(int id);
 }
