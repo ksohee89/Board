@@ -31,15 +31,19 @@
 				</td>
 		</tr>
 	</table>
-	
-	<div>
-		<form method="post" action="../comment/write">
-			<input type="hidden" name="pid" value="${post.id}">
-			<input type="hidden" name="uid" value="${sessionScope.login.id}">
-			<label>댓글</label>
-			<textarea rows="1" name="content"></textarea> <button>등록</button>
-		</form>
-	</div>
+	<c:if test="${empty sessionScope.login}">
+		<div> <label>로그인 후 작성 가능합니다.</label></div>
+	</c:if>
+	<c:if test="${not empty sessionScope.login}">
+		<div>
+			<form method="post" action="../comment/write">
+				<input type="hidden" name="pid" value="${post.id}">
+				<input type="hidden" name="uid" value="${sessionScope.login.id}">
+				<label>댓글</label>
+				<textarea rows="1" name="content"></textarea> <button>등록</button>
+			</form>
+		</div>
+	</c:if>
 	<br>
 	<div>
  		<c:forEach var="comment" items="${comments}">

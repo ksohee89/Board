@@ -9,7 +9,7 @@
 </head>
 <c:if test="${empty sessionScope.login}"><a href="../login" >[로그인]</a></c:if>
 <c:if test="${empty sessionScope.login}"><a href="../user/join" >[회원가입]</a></c:if>
-<c:if test="${not empty sessionScope.login}">"${sessionScope.login.username}"님 환영합니다! <a href="write">[게시글 쓰기]</a><a href="../user/update?id=${sessionScope.login.id}">[회원정보 수정]</a><a href="logout">[로그아웃]</a></c:if>
+<c:if test="${not empty sessionScope.login}">"${sessionScope.login.username}"님 환영합니다! <a href="write">[게시글 쓰기]</a><a href="../user/update?id=${sessionScope.login.id}">[회원정보 수정]</a><a href="../logout">[로그아웃]</a></c:if>
 <body>
 <hr>
 <table border="1">

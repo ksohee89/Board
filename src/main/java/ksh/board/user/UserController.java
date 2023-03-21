@@ -38,13 +38,13 @@ public class UserController {
 		if (errors.hasErrors()) {
 			model.addAttribute("userForm", userForm);
 
-			/* 유효성 및 중복 검사에 실패한 필드 목록을 받음 */
+			// 유효성 및 중복 검사에 실패한 필드 목록을 받음
 			for (FieldError error : errors.getFieldErrors()) {
 				String validKeyName = String.format("valid_%s", error.getField());
 				validatorResult.put(validKeyName, error.getDefaultMessage());
 			}
 
-			/* 유효성 통과 못한 필드와 메시지를 핸들링 */
+			// 유효성 통과 못한 필드와 메시지를 핸들링
 			for (String key : validatorResult.keySet()) {
 				model.addAttribute(key, validatorResult.get(key));
 			}
@@ -110,13 +110,13 @@ public class UserController {
 		if (errors.hasErrors()) {
 			model.addAttribute("userForm", userForm);
 			
-			/* 유효성 및 중복 검사에 실패한 필드 목록을 받음 */
+			// 유효성 및 중복 검사에 실패한 필드 목록을 받음
 			for (FieldError error : errors.getFieldErrors()) {
 				String validKeyName = String.format("valid_%s", error.getField());
 				validatorResult.put(validKeyName, error.getDefaultMessage());
 			}
 			
-			/* 유효성 통과 못한 필드와 메시지를 핸들링 */
+			// 유효성 통과 못한 필드와 메시지를 핸들링
 			for (String key : validatorResult.keySet()) {
 				model.addAttribute(key, validatorResult.get(key));
 			}

@@ -6,13 +6,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ksh.board.comment.CommentDAO;
@@ -50,6 +48,7 @@ public class PostController {
 		SimpleDateFormat dformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date now = new Date();
 		String current = dformat.format(now);
+		// 게시 날짜 현재 시간으로 설정함
 		postDto.setRegdate(current);
 		postDao.addPost(postDto);
 		model.addAttribute("message","글이 등록되었습니다.");
@@ -61,6 +60,7 @@ public class PostController {
 	@RequestMapping("post/read")
 	public String readPost(@RequestParam("id") int id, Model model){
 		PostDTO post = postDao.getPost(id);
+		// 조회수 증가
 		postDao.updateCnt(id);
 		model.addAttribute("post", post);
 		
@@ -85,6 +85,7 @@ public class PostController {
 		SimpleDateFormat dformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date now = new Date();
 		String current = dformat.format(now);
+		// 수정 날짜 현재 시간으로 설정함
 		post.setModdate(current);
 		postDao.updatePost(post);
 		model.addAttribute("message","글 수정이 완료되었습니다.");
@@ -95,8 +96,12 @@ public class PostController {
 	// 게시글 삭제 
 	@RequestMapping("post/delete")
 	public String deletePost(@RequestParam("id") int id){
+		
+		// 삭제 할 게시글의 모든 댓글 삭제 후
 		commentDao.deleteAllComment(id);
+		// 게시글 삭제
 		postDao.deletePost(id);
+		
 		return "redirect:/post/list";
 	}
 }

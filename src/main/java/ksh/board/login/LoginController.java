@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,12 +22,12 @@ public class LoginController {
 	@Autowired
 	private UserDAO dao;
 	
-	@RequestMapping(value="login", method=RequestMethod.GET)
+	@GetMapping("login")
 	public String loginReq(Model model) {
-		return "loginForm";
+		return "login";
 	}
 	
-	@RequestMapping(value="login", method=RequestMethod.POST)
+	@PostMapping("login")
 	public String loginProccessing(HttpServletRequest req, Model model) {
 		String userid = req.getParameter("userid");
 		String password = req.getParameter("password");
@@ -39,7 +41,7 @@ public class LoginController {
 		if(!errors.isEmpty()) {
 			model.addAttribute("userid", userid);
 			model.addAttribute("errors", errors);
-			return "loginForm";
+			return "login";
 		}
 		
 		UserDTO user = dao.getUserByUserId(userid);
@@ -56,7 +58,7 @@ public class LoginController {
 		}
 		if(!errors.isEmpty()) {
 			model.addAttribute("errors", errors);
-			return "loginForm";
+			return "login";
 		}
 		
 		HttpSession session = req.getSession();
@@ -65,7 +67,7 @@ public class LoginController {
 		
 	}
 	
-	@RequestMapping(value="logout", method=RequestMethod.GET)
+	@GetMapping("logout")
 	public String logoutProccessing(HttpServletRequest req, Model model) {
 		HttpSession session = req.getSession();
 		// 세션에 저장된 것을 지운다.

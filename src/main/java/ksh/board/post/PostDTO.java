@@ -11,6 +11,7 @@ public class PostDTO {
 	int id;
 	int writer;
 	String username;
+	
 	String title;
 	String content;
 	String regdate;
