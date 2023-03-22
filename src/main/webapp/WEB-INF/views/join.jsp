@@ -18,49 +18,64 @@
 	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
 	crossorigin="anonymous"></script>
 <!-- 별도 css 적용 -->
-<link rel="stylesheet" href="${path}/resources/css/join.css?after">
+<link rel="stylesheet" href="${path}/resources/css/join.css">
 </head>
-<style>
-</style>
-<body>
-	<div id="container">
-			<div class="container col-md-4">
-			<div id="JoinBoxTitle">Sign Up</div>
-			<form action="join" method="post">
-			<div class="form-group">
-				<label>아이디</label> 
-				<input type="text" name="userid" value="${userForm.userid}" class="form-control">
-				<span id="valid"> ${valid_userid} </span>
+<!-- 네비바를 fixed-top으로 설정했을 때 컨텐츠와 겹치는 문제 방지 -->
+<body class="pt-5">
+	<!-- navbar -->
+	<nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="../post/list">Board</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+				aria-controls="navbarCollapse" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+				<ul class="navbar-nav justify-content-end me-auto mb-2 mb-md-0">
+					<li class="nav-item"><a class="nav-link" href="../login">로그인</a></li>
+					<li class="nav-item"><a class="nav-link active" href="../user/join">회원가입</a>
+					</li>
+				</ul>
+				<!-- 검색 창 -->
+				<form class="d-flex" role="search">
+					<input class="form-control me-2" type="search" placeholder="Search"
+						aria-label="Search">
+					<button class="btn btn-outline-secondary" type="submit">검색</button>
+				</form>
 			</div>
-
-			<div class="form-group">
-				<label>비밀번호</label> 
-				<input type="password" name="password" value="${userForm.password}" class="form-control">
-				<span id="valid"> ${valid_password} </span>
-			</div>
-
-			<div class="form-group">
-				<label>비밀번호 확인</label> 
-				<input type="password" name="pwcheck" value="${userForm.pwcheck}" class="form-control">
-				<span id="valid"> ${valid_pwcheck} </span>
-			</div>
-
-			<div class="form-group">
-				<label>닉네임</label> 
-				<input type="text" name="username" value="${userForm.username}" class="form-control">
-				<span id="valid"> ${valid_username} </span>
-			</div>
-
-			<div>
-				<label>이메일</label> 
-				<input type="text" name="email" value="${userForm.email}" class="form-control">
-				<span id="valid"> ${valid_email} </span>
-			</div>
-			<div class="button-join-box">
-			<button class="btn btn-primary btn-xs" style="width:100%" type="submit">가입하기</button>
-			</div>
-		</form>
-	</div>
+		</div>
+	</nav>
+	<div class="container">
+				<form action="join" method="post">
+				<div class="form-group">
+					<div class="input-form-box"><span>아이디 </span><input type="text" name="userid" class="form-control" value="${userForm.userid}"></div>
+					<span id="valid"> ${valid_userid} </span>
+				</div>
+	
+				<div class="form-group">
+					<div class="input-form-box"><span>비밀번호 </span><input type="text" name="password" class="form-control" value="${userForm.password}"></div>
+					<span id="valid"> ${valid_password} </span>
+				</div>
+	
+				<div class="form-group">
+					<div class="input-form-box"><span>비밀번호 확인 </span><input type="text" name="pwcheck" class="form-control" value="${userForm.pwcheck}"></div>
+					<span id="valid"> ${valid_pwcheck} </span>
+				</div>
+	
+				<div class="form-group">
+					<div class="input-form-box"><span>닉네임 </span><input type="text" name="username" class="form-control" value="${userForm.username}"></div> 
+					<span id="valid"> ${valid_username} </span>
+				</div>
+				<div class="form-group">
+					<div class="input-form-box"><span>이메일 </span><input type="text" name="email" class="form-control" value="${userForm.email}"> </div>
+					<span id="valid"> ${valid_email} </span>
+				</div>
+				<div class="button-join-box">
+				<button class="btn btn-secondary btn-xs" style="width:100%" type="submit">가입하기</button>
+				</div>
+			</form>
 	</div>
 </body>
 </html>

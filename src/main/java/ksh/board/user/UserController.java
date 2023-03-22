@@ -89,6 +89,13 @@ public class UserController {
 		model.addAttribute("url","../post/list");
 		return "message";
 	}
+	
+	@GetMapping("/info")
+	public String userInfo(@RequestParam("id") int id, Model model) {
+		UserDTO user = dao.getUser(id);
+		model.addAttribute("user", user);
+		return "userInfo";
+	}
 
 	@GetMapping("/update")
 	public String updateForm(@RequestParam("id") int id, Model model) {
