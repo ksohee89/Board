@@ -96,12 +96,10 @@ public class PostController {
 	// 게시글 삭제 
 	@RequestMapping("post/delete")
 	public String deletePost(@RequestParam("id") int id){
-		
 		// 삭제 할 게시글의 모든 댓글 삭제 후
 		commentDao.deleteAllComment(id);
 		// 게시글 삭제
 		postDao.deletePost(id);
-		
 		return "redirect:/post/list";
 	}
 }

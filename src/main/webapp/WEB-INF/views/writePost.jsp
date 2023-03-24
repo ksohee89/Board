@@ -57,8 +57,7 @@
 					<input type="hidden" name="writer"value="${sessionScope.login.id}">
 					<input type="hidden" name="read_cnt" value=0>
 					<input type="text" name="title" class="form-control mb-2"
-						placeholder="제목을 입력해주세요." required
-					>
+						placeholder="제목을 입력해주세요." required>
 					<div class="form-group">
 						<textarea class="form-control" rows="10" name="content"
 							placeholder="내용을 입력해주세요" required></textarea>
