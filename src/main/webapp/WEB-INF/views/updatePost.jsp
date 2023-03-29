@@ -27,7 +27,7 @@
 	<!-- navbar -->
 	<nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="../post/list">Board</a>
+			<a class="navbar-brand" href="../post/list?page=1">Board</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
 				aria-controls="navbarCollapse" aria-expanded="false"

@@ -63,7 +63,7 @@ public class LoginController {
 		
 		HttpSession session = req.getSession();
 		session.setAttribute("login", user);
-		return "redirect:/post/list";
+		return "redirect:/post/list?page=1";
 		
 	}
 	
@@ -74,6 +74,6 @@ public class LoginController {
 		session.removeAttribute("login");	
 		// 세션에 저장된 모든 것을 지우고 세션을 초기화
 		session.invalidate();
-		return "redirect:/";
+		return "redirect:/post/list?page=1";
 	}
 }

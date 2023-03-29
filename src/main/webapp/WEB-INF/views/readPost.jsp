@@ -30,7 +30,7 @@
 	<!-- navbar -->
 	<nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="../post/list">Board</a>
+			<a class="navbar-brand" href="../post/list?page=1">Board</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
 				aria-controls="navbarCollapse" aria-expanded="false"
@@ -87,12 +87,12 @@
 			
 			        <!-- 게시글 관련 버튼 -->
 			        <c:if test="${sessionScope.login.id == post.writer}">
-			            <a href="../post/list" role="button" class="btn btn-info bi bi-arrow-return-left" id=listbtn> 목록</a>
+			            <a href="../post/list?page=${page}" role="button" class="btn btn-info bi bi-arrow-return-left" id=listbtn> 목록</a>
 			            <a href="../post/update?id=${post.id}" role="button" class="btn btn-primary bi bi-pencil-square" id=updatebtn> 수정</a>
 			            <button type="button" onclick="location.href='../post/delete?id=${post.id}'" id="btn-delete" class="btn btn-danger bi bi-trash" id=deletebtn> 삭제</button>
 			        </c:if>
 			        <c:if test="${sessionScope.login.id != post.writer}">
-			            <a href="../post/list" role="button" class="btn btn-info bi bi-arrow-return-left" id=listbtn> 목록</a>
+			            <a href="javascript:window.history.back();" role="button" class="btn btn-info bi bi-arrow-return-left" id=listbtn> 목록</a>
 			        </c:if>
 			
 					<!-- 댓글 -->
@@ -122,7 +122,7 @@
 					                    <input type="hidden" name="pid" value="${comment.pid}">
 					                    <input type="hidden" name="uid" value="${comment.uid}">
 					                    <div class="form-group">
-					                        <textarea class="form-control" name="content" rows="3" required>${comment.content}</textarea>
+					                        <textarea class="form-control" name="content" id="updatecontent" rows="3" required>${comment.content}</textarea>
 					                    </div>
 					                    <button type="submit" id="btn-comment-update" class="btn btn-outline-primary bi bi-pencil-square"> 수정</button>
 					                </form>
@@ -138,7 +138,7 @@
 							<input type="hidden" name="uid" value="${sessionScope.login.id}">
 					        <c:if test="${not empty sessionScope.login}">
 					            <div class="card-body">
-					                <textarea name=content class="form-control" rows="4" placeholder="댓글을 입력하세요"></textarea>
+					                <textarea name="content" id="content" class="form-control" rows="4" placeholder="댓글을 입력하세요"></textarea>
 					            </div>
 					            <div class="card-footer">
 					                <button type="submit" id="btn-comment-save"class="btn btn-outline-primary bi bi-pencil-square"> 등록</button>

@@ -26,7 +26,7 @@
 	<!-- navbar -->
 	<nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="../post/list">Board</a>
+			<a class="navbar-brand" href="../post/list?page=1">Board</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
 				aria-controls="navbarCollapse" aria-expanded="false"
@@ -82,20 +82,49 @@
 						</c:forEach>
 					</tbody>
 				</table>
+					
 			</div>
 			
-			<!-- 로그인 된 상태에서만 나타나도록 -->
-			<c:if test="${not empty sessionScope.login}">
-				<!-- 글쓰기 버튼 -->
-				<form action="../post/write" method="get">
-					<button type="submit" class="btn btn-secondary mb-3" style="float: right;">
-	                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-	  				<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
-					</svg>
-	                글쓰기
-	              </button>
-				</form>
-			</c:if>
+			<div>
+			<div id="page">
+				<c:if test="${not empty startPage}">
+	 				<c:if test="${prev}">
+					 <span> <a href="../post/list?page=${startPage - 1}">&lt;</a> </span>
+					</c:if>
+		
+					<c:forEach begin="${startPage}" end="${endPage}" var="page">
+					  <span>
+					   <a href="../post/list?page=${page}">${page}</a> 
+					 </span>
+					</c:forEach>
+					</c:if>
+					<c:if test="${next}">
+					 <span> <a href="../post/list?page=${endPage + 1}">&gt;</a></span>
+					</c:if>
+				<c:if test="${empty startPage}">
+					<c:forEach begin="1" end="${pageNum}" var="page">
+						<span>
+							<a href="../post/list?page=${page}">${page}</a>
+						</span>
+					</c:forEach>
+				</c:if>
+			</div>
+				<div id="writeBtn">
+				<!-- 로그인 된 상태에서만 나타나도록 -->
+				<c:if test="${not empty sessionScope.login}">
+					<!-- 글쓰기 버튼 -->
+					<form action="../post/write" method="get">
+						<button type="submit" class="btn btn-secondary mb-3" style="float: right; font-size: 8px;">
+		                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+		  				<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
+						</svg>
+		                글쓰기
+		              </button>
+					</form>
+				</c:if>
+				</div>
+			</div>
+			
 		</div>
 	</div>
 </body>

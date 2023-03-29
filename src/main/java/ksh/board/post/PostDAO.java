@@ -12,4 +12,6 @@ public interface PostDAO {
 	public int updateCnt (int id);
 	public int updatePost(PostDTO post);
 	public int deletePost(int id);
+	public int countPost();
+	public List<PostDTO> listPage(int displayPost, int limit);
 }

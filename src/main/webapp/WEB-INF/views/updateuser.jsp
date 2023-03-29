@@ -18,13 +18,13 @@
 	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
 	crossorigin="anonymous"></script>
 <!-- 별도 css 적용 -->
-<link rel="stylesheet" href="${path}/resources/css/updateuser.css">
+<link rel="stylesheet" href="${path}/resources/css/updateuser.css?after">
 </head>
 <body class="pt-5">
 	<!-- navbar -->
 	<nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="../post/list">Board</a>
+			<a class="navbar-brand" href="../post/list?page=1">Board</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
 				aria-controls="navbarCollapse" aria-expanded="false"
