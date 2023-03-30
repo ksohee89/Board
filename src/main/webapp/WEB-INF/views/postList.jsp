@@ -50,9 +50,15 @@
 				</ul>
 				<!-- 검색 창 -->
 				<form class="d-flex" role="search">
+				  <select class="form-select" name="searchType" style="font-size: 10px;">
+				      <option value="title">제목</option>
+				      <option value="content">내용</option>
+				      <option value="title_content">제목+내용</option>
+				      <option value="writer">작성자</option>
+				  </select>
 					<input class="form-control me-2" type="search" placeholder="Search"
-						aria-label="Search">
-					<button class="btn btn-outline-secondary" type="submit">검색</button>
+						aria-label="Search" name="query" value="${query}">
+					<button class="btn btn-outline-secondary" type="button" id="searchBtn">검색</button>
 				</form>
 			</div>
 		</div>
@@ -127,5 +133,14 @@
 			
 		</div>
 	</div>
+	<script>
+		document.getElementById("searchBtn").onclick = function () {
+		    
+		 let searchType = document.getElementsByName("searchType")[0].value;
+		 let query =  document.getElementsByName("query")[0].value;
+		  
+		 location.href = "../post/search?page=1&searchType=" + searchType + "&query=" + query;
+		};
+	</script>
 </body>
 </html>

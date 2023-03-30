@@ -39,6 +39,21 @@
 	<!-- 게시물 총 갯수 -->
 	<select id="countPost" resultType="int">
 	 	select count(id) from post
+	 	<if test='searchType.equals("title")'>
+			where title like concat('%', #{query}, '%')
+		</if>
+	 	<if test='searchType.equals("content")'>
+			where content like concat('%', #{query}, '%')
+		</if>
+		 
+		<if test='searchType.equals("title_content")'>
+		 	where title like concat('%', #{query}, '%') 
+		 	or content like concat('%', #{query}, '%')
+		</if>
+		 
+		<if test='searchType.equals("username")'>
+			where username like concat('%', #{query}, '%')
+		</if>
 	</select>
 	
 	<!-- 페이징 -->
@@ -46,6 +61,30 @@
 		select p.id, writer, username, title, content, p.regdate, p.moddate, read_cnt
 		from post p, user u 
 		where writer = u.id
+		order by p.id desc
+		limit #{displayPost}, #{limit}
+	</select>
+	
+	<!-- 페이징 -->
+	<select id="SearchPost" parameterType="hashMap" resultType="PostDTO">
+		select p.id, writer, username, title, content, p.regdate, p.moddate, read_cnt
+		from post p, user u 
+		<if test='searchType.equals("title")'>
+			where writer = u.id and title like concat('%', #{query}, '%')
+		</if>
+		 
+		 <if test='searchType.equals("content")'>
+		  where writer = u.id and content like concat('%', #{query}, '%')
+		 </if>
+		 
+		 <if test='searchType.equals("title_content")'>
+		  where writer = u.id and title like concat('%', #{query}, '%') 
+		   or content like concat('%', #{query}, '%')
+		 </if>
+		 
+		 <if test='searchType.equals("writer")'>
+		  where writer = u.id and username like concat('%', #{query}, '%')
+		 </if>
 		order by p.id desc
 		limit #{displayPost}, #{limit}
 	</select>

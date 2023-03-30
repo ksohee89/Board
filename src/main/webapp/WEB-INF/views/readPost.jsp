@@ -146,14 +146,14 @@
 					        </c:if>
 					        </form>
 					        <c:if test="${empty sessionScope.login}">
-					            <div class="card-body" style="font-size: small"><a href="../login">로그인</a>을 하시면 댓글을 등록할 수 있습니다.</div>
+					            <div class="card-body" style="font-size: 10px;"><a href="../login">로그인</a>을 하시면 댓글을 등록할 수 있습니다.</div>
 					        </c:if>
 					</div>
 			    </div>
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript"> 
+<!-- 	<script type="text/javascript"> 
 		//댓글 수정
 		document.querySelectorAll('#btn-comment-update').forEach(function (item) {
 		item.addEventListener('click', function () { // 버튼 클릭 이벤트 발생시
@@ -161,6 +161,6 @@
 			_this.commentUpdate(form); // 해당 form으로 업데이트 수행
 		});
 	});
-	</script>
+	</script> -->
 </body>
 </html>

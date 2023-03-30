@@ -107,51 +107,57 @@ public class PostController {
 	@GetMapping("post/list")
 	public String ListPage(@RequestParam("page") int page, Model model) {
 		
-		// 게시글 총 갯수 구하기
-		int count = postDao.countPost();
+		Paging paging  = new Paging();
 		
-		// 한 페이지에 출력할 게시글 갯수
-		int limit = 10;
+		paging.setPage(page);
+		paging.setCount(postDao.countPost("",""));
 		
-		// 페이징 번호
-		int pageNum = (int)Math.ceil((double)count/limit);
+		List<PostDTO> posts = postDao.listPage(paging.getDisplayPost(), paging.getLimit());
 		
-		// 출력할 게시글
-		int displayPost = (page - 1) * limit;
-		
-		// 표시 될 페이징 번호 갯수
-		int pageNum_cnt = 10;
-		
-		// 표시될 페이징 번호 중 마지막 페이지 번호
-		int endPage = (int) (Math.ceil((double)page/(double)pageNum_cnt)*pageNum_cnt);
-		
-		// 표시될 페이징 번호 중 시작 페이지 번호
-		int startPage = endPage - pageNum_cnt + 1;
-		
-		// 마지막 페이지 번호 재계산
-		int endPage_2 = (int) (Math.ceil((double)count/(double)limit));
-		if(endPage > endPage_2) {
-			endPage = endPage_2;
-		}
-		
-		boolean prev = startPage == 1 ? false : true;
-		boolean next = endPage * limit >= count ? false : true;
-		
-		List<PostDTO> posts = postDao.listPage(displayPost, limit);
-		model.addAttribute("posts", posts);
-		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("posts", posts); 
+		model.addAttribute("pageNum", paging.getPageNum());
 		model.addAttribute("page", page);
 		
-		if (startPage > 0) {
-			// 시작, 끝 페이지 번호
-			model.addAttribute("startPage", startPage);
-			model.addAttribute("endPage", endPage);
-			
-			// 이전, 다음
-			model.addAttribute("prev", prev);
-			model.addAttribute("next", next);
+		if (paging.getStartPage() > 0) { 
+			// 시작, 끝 페이지 번호 
+			model.addAttribute("startPage", paging.getStartPage()); 
+			model.addAttribute("endPage", paging.getEndPage());
+			// 이전, 다음 
+			model.addAttribute("prev", paging.isPrev()); 
+			model.addAttribute("next", paging.isNext());
 		}
 		
 		return "postList"; 
+	}
+	
+	@GetMapping("post/search")
+	public String searchPost(@RequestParam("page") int page, @RequestParam(value="searchType", defaultValue = "title") String searchType, 
+			@RequestParam(value="query", defaultValue = "") String query, Model model) {
+		
+		Paging paging = new Paging();
+		
+		paging.setPage(page);
+		paging.setCount(postDao.countPost(searchType, query));
+		paging.setSearchTypeQuery(searchType, query);
+		List<PostDTO> posts = postDao.SearchPost(paging.getDisplayPost(), paging.getLimit(), searchType, query);
+		
+		model.addAttribute("posts", posts); 
+		model.addAttribute("pageNum", paging.getPageNum());
+		model.addAttribute("page", page);
+		model.addAttribute("searchType", searchType);
+		model.addAttribute("query", query);
+		model.addAttribute("searchTypeQuery", paging.getSearchTypeQuery());
+		
+		if (paging.getStartPage() > 0) { 
+			// 시작, 끝 페이지 번호 
+			model.addAttribute("startPage", paging.getStartPage()); 
+			model.addAttribute("endPage", paging.getEndPage());
+			// 이전, 다음 
+			model.addAttribute("prev", paging.isPrev()); 
+			model.addAttribute("next", paging.isNext());
+		}
+		
+		
+		return "searchPost"; 
 	}
 }
