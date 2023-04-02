@@ -19,7 +19,7 @@
 	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
 	crossorigin="anonymous"></script>
 <!-- 별도 css 적용 -->
-<link rel="stylesheet" href="${path}/resources/css/writePost.css?after">
+<link rel="stylesheet" href="${path}/resources/css/writePost.css">
 
 </head>
 <!-- 네비바를 fiexd-top으로 설정했을 때 컨텐츠와 겹치는 문제 방지 -->
@@ -42,13 +42,20 @@
 				</ul>
 				<!-- 검색 창 -->
 				<form class="d-flex" role="search">
+				  <select class="form-select" name="searchType" style="font-size: 10px;">
+				      <option value="title">제목</option>
+				      <option value="content">내용</option>
+				      <option value="title_content">제목+내용</option>
+				      <option value="writer">작성자</option>
+				  </select>
 					<input class="form-control me-2" type="search" placeholder="Search"
-						aria-label="Search">
-					<button class="btn btn-outline-secondary" type="submit">검색</button>
+						aria-label="Search" name="query" value="${query}">
+					<button class="btn btn-outline-secondary" type="button" id="searchBtn">검색</button>
 				</form>
 			</div>
 		</div>
 	</nav>
+	
 	<div class="container">
 		<!-- 게시글 테이블 -->
 		<div class="border border-dark border-2">

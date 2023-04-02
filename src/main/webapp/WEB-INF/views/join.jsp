@@ -18,7 +18,7 @@
 	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
 	crossorigin="anonymous"></script>
 <!-- 별도 css 적용 -->
-<link rel="stylesheet" href="${path}/resources/css/join.css?after">
+<link rel="stylesheet" href="${path}/resources/css/join.css">
 </head>
 <!-- 네비바를 fixed-top으로 설정했을 때 컨텐츠와 겹치는 문제 방지 -->
 <body class="pt-5">
@@ -40,36 +40,43 @@
 				</ul>
 				<!-- 검색 창 -->
 				<form class="d-flex" role="search">
+				  <select class="form-select" name="searchType" style="font-size: 10px;">
+				      <option value="title">제목</option>
+				      <option value="content">내용</option>
+				      <option value="title_content">제목+내용</option>
+				      <option value="writer">작성자</option>
+				  </select>
 					<input class="form-control me-2" type="search" placeholder="Search"
-						aria-label="Search">
-					<button class="btn btn-outline-secondary" type="submit">검색</button>
+						aria-label="Search" name="query" value="${query}">
+					<button class="btn btn-outline-secondary" type="button" id="searchBtn">검색</button>
 				</form>
 			</div>
 		</div>
 	</nav>
+	
 	<div class="container">
 				<form action="join" method="post">
 				<div class="form-group">
-					<div class="input-form-box"><span>아이디 </span><input type="text" name="userid" class="form-control" value="${userForm.userid}"></div>
+					<div class="input-form-box"><span>아이디 </span><input type="text" name="userid" class="form-control" id="inputForm" value="${userForm.userid}"></div>
 					<span id="valid"> ${valid_userid} </span>
 				</div>
 	
 				<div class="form-group">
-					<div class="input-form-box"><span>비밀번호 </span><input type="text" name="password" class="form-control" value="${userForm.password}"></div>
+					<div class="input-form-box"><span>비밀번호 </span><input type="text" name="password" class="form-control" id="inputForm" value="${userForm.password}"></div>
 					<span id="valid"> ${valid_password} </span>
 				</div>
 	
 				<div class="form-group">
-					<div class="input-form-box"><span>비밀번호 확인 </span><input type="text" name="pwcheck" class="form-control" value="${userForm.pwcheck}"></div>
+					<div class="input-form-box"><span>비밀번호 확인 </span><input type="text" name="pwcheck" class="form-control" id="inputForm" value="${userForm.pwcheck}"></div>
 					<span id="valid"> ${valid_pwcheck} </span>
 				</div>
 	
 				<div class="form-group">
-					<div class="input-form-box"><span>닉네임 </span><input type="text" name="username" class="form-control" value="${userForm.username}"></div> 
+					<div class="input-form-box"><span>닉네임 </span><input type="text" name="username" class="form-control" id="inputForm" value="${userForm.username}"></div> 
 					<span id="valid"> ${valid_username} </span>
 				</div>
 				<div class="form-group">
-					<div class="input-form-box"><span>이메일 </span><input type="text" name="email" class="form-control" value="${userForm.email}"> </div>
+					<div class="input-form-box"><span>이메일 </span><input type="text" name="email" class="form-control" id="inputForm" value="${userForm.email}"> </div>
 					<span id="valid"> ${valid_email} </span>
 				</div>
 				<div class="button-join-box">
