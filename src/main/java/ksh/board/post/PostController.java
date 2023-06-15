@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,7 +54,7 @@ public class PostController {
 		postDto.setRegdate(current);
 		postDao.addPost(postDto);
 		model.addAttribute("message","글이 등록되었습니다.");
-		model.addAttribute("url","list");
+		model.addAttribute("url","list?page=1");
 		return "message";
 	}
 	
@@ -61,10 +62,11 @@ public class PostController {
 	@RequestMapping("post/read")
 	public String readPost(@RequestParam("id") int id, Model model){
 		PostDTO post = postDao.getPost(id);
+		
 		// 조회수 증가
 		postDao.updateCnt(id);
 		model.addAttribute("post", post);
-		
+
 		// 댓글 조회
 		List<CommentDTO> comments = commentDao.getComments(id);
 		model.addAttribute("comments", comments);
@@ -90,18 +92,18 @@ public class PostController {
 		post.setModdate(current);
 		postDao.updatePost(post);
 		model.addAttribute("message","글 수정이 완료되었습니다.");
-		model.addAttribute("url","list");
+		model.addAttribute("url","list?page=1");
 		return "message";
 	}
 	
-	// 게시글 삭제 
+	//게시글 삭제 
 	@RequestMapping("post/delete")
 	public String deletePost(@RequestParam("id") int id){
 		// 삭제 할 게시글의 모든 댓글 삭제 후
 		commentDao.deleteAllComment(id);
 		// 게시글 삭제
 		postDao.deletePost(id);
-		return "redirect:/post/list";
+		return "redirect:/post/list?page=1";
 	}
 	
 	@GetMapping("post/list")
