@@ -31,6 +31,7 @@
 		delete from user
 		where id = #{id}		
 	</delete>
+	
 	<select id="checkUserId" parameterType="String" resultType="int">
 		select count(*)
 		from user

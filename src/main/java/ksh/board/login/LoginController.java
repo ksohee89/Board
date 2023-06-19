@@ -22,11 +22,13 @@ public class LoginController {
 	@Autowired
 	private UserDAO dao;
 	
+	// 로그인 페이지
 	@GetMapping("login")
 	public String loginReq(Model model) {
 		return "login";
 	}
 	
+	// 로그인
 	@PostMapping("login")
 	public String loginProccessing(HttpServletRequest req, Model model) {
 		String userid = req.getParameter("userid");
@@ -67,6 +69,7 @@ public class LoginController {
 		
 	}
 	
+	// 로그아웃
 	@GetMapping("logout")
 	public String logoutProccessing(HttpServletRequest req, Model model) {
 		HttpSession session = req.getSession();

@@ -27,11 +27,13 @@ public class UserController {
 	@Autowired
 	private UserDAO dao;
 
+	// 회원가입 페이지
 	@GetMapping("/join")
 	public String joinReq(Model model) {
 		return "join";
 	}
 
+	// 회원가입
 	@PostMapping("join")
 	public String addUser(@Valid UserForm userForm, Errors errors, Model model, BindingResult bindingResult) {
 		Map<String, String> validatorResult = new HashMap<>();	
@@ -86,10 +88,11 @@ public class UserController {
 		dao.addUser(user);
 		
 		model.addAttribute("message","회원가입이 완료되었습니다.");
-		model.addAttribute("url","../post/list");
+		model.addAttribute("url","../post/list?page=1");
 		return "message";
 	}
 	
+	// 회원정보 페이지
 	@GetMapping("/info")
 	public String userInfo(@RequestParam("id") int id, Model model) {
 		UserDTO user = dao.getUser(id);
@@ -97,6 +100,7 @@ public class UserController {
 		return "userInfo";
 	}
 
+	// 회원 정보 수정 페이지
 	@GetMapping("/update")
 	public String updateForm(@RequestParam("id") int id, Model model) {
 		UserDTO user = dao.getUser(id);
@@ -111,6 +115,7 @@ public class UserController {
 		return "updateuser";
 	}
 
+	// 회원 정보 수정
 	@PostMapping("update")
 	public String updateUser(@Valid UserForm userForm, Errors errors, @RequestParam("id") int id, Model model){
 		Map<String, String> validatorResult = new HashMap<>();	
@@ -150,8 +155,16 @@ public class UserController {
 		dao.updateUser(user);
 		
 		model.addAttribute("message","회원정보 수정이 완료되었습니다.");
-		model.addAttribute("url","../post/list");
+		model.addAttribute("url","../post/list?page=1");
 		return "message";
 	}
+	
+	// 회원 삭제 
+	@RequestMapping("delete")
+	public String deleteUser(@RequestParam("id") int id){
+		dao.deleteUser(id);
+		return "redirect:/post/list?page=1";
+	}
+	
 
 }

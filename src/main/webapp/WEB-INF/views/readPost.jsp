@@ -116,7 +116,7 @@
 					                <c:if test="${comment.uid == sessionScope.login.id}">
 					                    <a type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse-${comment.id}"
 					                       class="bi bi-pencil-square"></a> <!-- 댓글 수정 버튼 -->
-					                    <a type="button" onclick="location.href='../comment/delete?pid=${comment.pid}&id=${comment.id}'"
+					                    <a type="button" onclick="if(!confirm('정말 삭제하시겠습니까?')){return false;} location.href='../comment/delete?pid=${comment.pid}&id=${comment.id}'"
 					                       class="bi bi-x-square"></a> <!-- 댓글 삭제 버튼 -->
 					               </c:if>
 					
