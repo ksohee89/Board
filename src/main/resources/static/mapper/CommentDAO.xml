@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ksh.board.comment.CommentDAO">
+	<select id="getComments" parameterType="int" resultType="CommentDTO">
+		select c.id, pid, uid, username, content, c.regdate, c.moddate 
+		from comment c, user u 
+		where pid = #{pid} and uid = u.id
+	</select>
+	 
+	<insert id="addComment" parameterType="CommentDTO">
+		insert into comment(pid, uid, content, regdate)
+		values (#{pid}, #{uid}, #{content}, #{regdate})
+	</insert>
+	
+	<update id="updateComment" parameterType="CommentDTO">
+		update comment
+		set content=#{content}, moddate=#{moddate}
+		where id = #{id} and pid = #{pid}
+	</update>
+
+	<delete id="deleteComment" parameterType="int">
+		delete from comment
+		where id = #{id} and pid = #{pid}
+	</delete>
+	
+		<delete id="deleteAllComment" parameterType="commentDTO">
+		delete from comment
+		where pid = #{pid}
+	</delete>
+
+</mapper>
