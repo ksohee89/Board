@@ -15,4 +15,5 @@ public class CommentDTO {
 	String content;
 	String regdate;
 	String moddate;
+	
 }

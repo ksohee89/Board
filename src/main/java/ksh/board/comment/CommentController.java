@@ -38,7 +38,7 @@ public class CommentController {
 		SimpleDateFormat dformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date now = new Date();
 		String current = dformat.format(now);
-		// 수정 날짜 현재 시간으로 설정함
+		// 수정 날짜 현재 시간으로 설정
 		System.out.println(comment);
 		comment.setModdate(current);
 		dao.updateComment(comment);
