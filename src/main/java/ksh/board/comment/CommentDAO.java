@@ -12,5 +12,4 @@ public interface CommentDAO {
 	public int updateComment(CommentDTO comment);
 	public int deleteComment(int pid, int id);
 	public int deleteAllComment(int pid);
-	
 }
