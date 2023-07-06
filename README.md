@@ -33,23 +33,24 @@ Spring Boot, jsp로 구현한 게시판 프로젝트
 ## 🔧 설계 및 구조
 
 ### 1. DB 설계 및 구조
-![erd](https://github.com/ksohee89/Board/assets/122970061/e914650e-ce5d-45ae-a5f7-08f43fd0c66b)
-<img src = "https://github.com/ksohee89/Board/assets/122970061/a3f63504-3ade-4f7d-a036-171f36405ae2" width="70%" height="70%">
-<img src = "https://github.com/ksohee89/Board/assets/122970061/679a0662-6068-46aa-b104-ece81cb018e6" width="70%" height="70%">
-<img src = "https://github.com/ksohee89/Board/assets/122970061/2134e029-6705-4176-9930-e1e47fc2b65b" width="70%" height="70%">
+![erd](https://github.com/ksohee89/Board/assets/122970061/dde36188-2418-41fc-8bf8-7bd263e5997f)
+
+<img src = "https://github.com/ksohee89/Board/assets/122970061/4a65e160-e339-40cd-949c-2cb2c3de9f70" width="70%" height="70%">
+<img src = "https://github.com/ksohee89/Board/assets/122970061/89de3fa5-e50c-4599-8f3d-1fdb9ccb93ec" width="70%" height="70%">
+<img src = "https://github.com/ksohee89/Board/assets/122970061/b2ede49e-40d3-43b1-b600-c7d2af1807cf" width="70%" height="70%">
 
 ### 2. API 설계
 
 2-1. 로그인 관련 API <br>
-<img src = "https://github.com/ksohee89/Board/assets/122970061/0f1e0358-5f49-44b8-a104-ffb04f3c5551" width="70%" height="70%">
+<img src = "https://github.com/ksohee89/Board/assets/122970061/c1f8cdaf-edbe-4bfe-8f38-9c74dae43970" width="70%" height="70%">
 
 2-2. 회원 관련 API <br>
-<img src = "https://github.com/ksohee89/Board/assets/122970061/5f591e22-2ad4-4142-816d-ddd70f267269" width="70%" height="70%">
+<img src = "https://github.com/ksohee89/Board/assets/122970061/8af325c9-1b9f-41da-b233-c4101d14712b" width="70%" height="70%">
 
 2-3. 게시글 관련 API <br>
-<img src = "https://github.com/ksohee89/Board/assets/122970061/2d7d4e12-d570-42c7-94e6-c2cb6dbb33b8" width="80%" height="80%">
+<img src = "https://github.com/ksohee89/Board/assets/122970061/a058715d-06fd-4d68-a4dd-8c7c99d3f753" width="80%" height="80%">
 
 2-4. 댓글 관련 API <br>
-<img src = "https://github.com/ksohee89/Board/assets/122970061/c737f12e-718a-4f23-b65f-ab4badc4428d" width="70%" height="70%">
+<img src = "https://github.com/ksohee89/Board/assets/122970061/a8df3a5c-e95c-4839-98d3-837053b72678" width="70%" height="70%">
 
 ## :pushpin: 주요 기능
